@@ -1,0 +1,10 @@
+<% @posts.each do |post| %>
+    <h2><strong><%= post.title %></strong><small> / <%= post.categories.collect { |c| c.name } %></small></h2>
+    <small><%= post.created_at.to_formatted_s(:long) %> by <strong><%= post.user.email %></strong></small>
+    <hr>
+    <div>
+    	  <p><%= post.content %></p>
+    </div>
+
+    <%= link_to "-More-", posts_show_path(post.id), class: 'btn btn-success' %>
+<% end %>

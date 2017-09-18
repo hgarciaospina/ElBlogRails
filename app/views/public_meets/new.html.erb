@@ -1,0 +1,21 @@
+<h4>Request an Meeting</h4>
+<%= form_tag create_meet_path do %>
+	<div class="field">
+	    <%= label_tag 'name' %>
+	    <%= text_field_tag :name, nil, class: 'form-control' %>
+	</div>
+
+	<div class="field">
+	    <%= label_tag 'date of meet' %>
+	    <%= text_field_tag :meeting, nil,  class: 'form-control', placeholder: 'dd/mm/yyyy' %>
+	 </div>
+
+	 <div class="field">
+	    <%= label_tag 'Subject' %>
+	    <%= text_area_tag :subject, nil,  class: 'form-control' %>
+	 </div>
+
+	 <div class="actions">
+	    <%= submit_tag 'Request', class: 'btn btn-primary' %>
+	 </div>
+ <% end %>

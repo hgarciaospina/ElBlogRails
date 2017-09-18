@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "ElBlogRails" %></title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag "application", :media => "all" %>
+
+    <!-- For third-generation iPad with high-resolution Retina display: -->
+    <!-- Size should be 144 x 144 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
+
+    <!-- For iPhone with high-resolution Retina display: -->
+    <!-- Size should be 114 x 114 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
+
+    <!-- For first- and second-generation iPad: -->
+    <!-- Size should be 72 x 72 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
+
+    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+    <!-- Size should be 57 x 57 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
+
+    <!-- For all other devices -->
+    <!-- Size should be 32 x 32 pixels -->
+    <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+
+    <%= javascript_include_tag "application" %>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js" type="text/javascript"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <div class="navbar navbar-default navbar-static-top barra-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav">
+                  <li><%= link_to "Meets", meeting_path  %></li>
+                  <li><%= link_to "Posts", root_path  %></li>
+                </ul>
+              </div>
+          </div><!--end col-md-9 -->
+          <div class="col-md-4">
+            <ul class="nav navbar-nav">
+              <% if user_signed_in? %>
+                 <li><%= link_to "Panel", posts_path %></li>
+                 <li><a>User: <%= current_user.email %><a></li>
+              <% else %>
+                 <li><%= link_to "Sign in", new_user_session_path %></li>
+              <% end %>
+            </ul>
+          </div>
+       </div> <!--end row -->
+      </div>
+    </div>
+
+    <div class="col-md-12 titleBlog">
+      <h1>The Blog of Rails</h1>
+      <h3>All about Ruby and Rails in the most complete blog</h3>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+          <%= bootstrap_flash %>
+          <%= yield %>
+        </div>
+        <div class="col-lg-3">
+          <div class="well ours">
+            <h3>Ours</h3>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient.
+            </p><!--/.well -->
+          </div>
+
+           <div class="well sidebar-nav">
+            <h3>Categories</h3>
+            <ul class="nav nav-list">
+              <% if !list_categories.nil? %>
+                <% list_categories.each do |c|%>
+                  <li><%= link_to c.name, posts_category_path(c.id) %></li>
+                <% end %>
+              <% end %>
+            </ul>
+          </div><!--/.well -->
+          <div class="ads">
+            <% if !ads_available.nil? %>
+              <%= link_to ads_available.link, target: '_blank' do %>
+                <%= image_tag ads_available.image, width: 250 %>
+              <% end %>
+            <% end %>
+          </div>
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <footer>
+        <hr>
+        <p>&copy; Company <%= Time.now.strftime("%Y") %></p>
+      </footer>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>

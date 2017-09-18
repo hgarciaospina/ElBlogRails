@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ads</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Image</th>
+      <th>Link</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ads.each do |ad| %>
+      <tr>
+        <td><%= ad.name %></td>
+        <td><%= image_tag ad.image, height:100 %></td>
+        <td><%= ad.link %></td>
+        <td><%= link_to 'Show', ad, class: 'btn btn-info'  %></td>
+        <td><%= link_to 'Edit', edit_ad_path(ad), class: 'btn btn-warning'  %></td>
+        <td><%= link_to 'Destroy', ad, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ad', new_ad_path, class: 'btn btn-primary' %>

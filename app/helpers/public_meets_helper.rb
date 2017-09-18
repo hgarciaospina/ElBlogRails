@@ -1,0 +1,2 @@
+module PublicMeetsHelper
+end

@@ -1,0 +1,31 @@
+<h2><strong><%= @post.title %></strong> <small> / <%= @post.categories.collect { |c| c.name } %></small></h2>
+<small><%= @post.created_at.to_formatted_s(:long) %> by <strong><%= @post.user.email %></strong></small>
+<hr>
+<p><%= @post.content %></p>
+
+<h3>Comments</h3>
+<% @comments.each do |c| %>
+  <blockquote class="blockquote">
+  	<p class="mb-0"><%= c.content %></p>
+  	<footer class="blockquote-footer"><%= c.name %></footer>
+  </blockquote>
+<% end %>
+
+<h4>Create Comment</h4>
+<%= form_tag create_comment_path do %>
+	<div class="field">
+	    <%= label_tag :name %>
+	    <%= text_field_tag :name, nil, class: 'form-control' %>
+	</div>
+
+	<div class="field">
+	    <%= label_tag :content %>
+	    <%= text_area_tag :content, nil,  class: 'form-control' %>
+	 </div>
+
+	 <%= hidden_field_tag :post_id, @post.id %>
+
+	  <div class="actions">
+	    <%= submit_tag 'Create Comment', class: 'btn btn-primary' %>
+	  </div>
+ <% end %>

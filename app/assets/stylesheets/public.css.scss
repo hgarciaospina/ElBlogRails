@@ -1,0 +1,44 @@
+* {box-sizing: border-box; }
+
+.barra-top {
+    
+	background-color: darkred !important;
+	margin-bottom: 0px;
+	border: 0px;
+
+	a{
+	  color:white !important;
+	}
+}
+
+.titleBlog {
+	background-color: #000000;
+
+	h1{
+	  color: orange;
+	  font-weight: bold;
+	  font-size: 70px;
+	  letter-spacing: -1px;
+	}	
+
+	h3{
+	  color: gray;
+	  font-size: 23px;
+	  font-family: Georgia, Helvetica, Arial, sans-serif;
+	  margin-bottom: 30px;
+	}
+}
+
+p{
+   text-align: justify; 
+}
+
+.ours {
+	margin-top: 20px;
+}
+
+.ocultar{
+	height: 90px;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
