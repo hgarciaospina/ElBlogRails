@@ -3,7 +3,7 @@
     <small><%= post.created_at.to_formatted_s(:long) %> by <strong><%= post.user.email %></strong></small>
     <hr>
     <div>
-    	  <p><%= post.content %></p>
+      <%= post.content.length > 400 ? post.content.truncate(400) : post.content %>
     </div>
 
     <%= link_to "-More-", posts_show_path(post.id), class: 'btn btn-success' %>

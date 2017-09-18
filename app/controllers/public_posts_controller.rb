@@ -7,8 +7,7 @@ class PublicPostsController < ApplicationController
   end
 
   def show
-    @comments = @post.comments
-
+		@comments = @post.comments
     @comment = Comment.new
   end
 
@@ -21,7 +20,7 @@ class PublicPostsController < ApplicationController
   end
 
   def posts_category
-  	@category = Category.find(params[:id])
+  	#@category = Category.find(params[:id])
 
   	@posts = @category.posts.published
   end
